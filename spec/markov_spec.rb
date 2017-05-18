@@ -5,11 +5,12 @@ require "markov"
 RSpec.describe Markov do
   describe "#parse" do
     it "removes extra whitespace" do
-      file_name = "leviticus.txt"
+      sentence = "Boo\nHoo"
+      desired_output = "Boo Hoo"
 
-      text = Markov.parse(file_name)
+      output = Markov.parse(sentence)
 
-      expect(text).to_not include("\n")
+      expect(output).to eq(desired_output)
     end
 
     it "replaces sentence-terminating punctuation with markers" do
