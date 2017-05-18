@@ -4,14 +4,6 @@ require "markov"
 
 RSpec.describe Markov do
   describe "#parse" do
-    it "reads a text file" do
-      file_name = "leviticus.txt"
-
-      text = Markov.parse(file_name)
-
-      expect(text).to include("burnt-offering of the herd")
-    end
-
     it "removes extra whitespace" do
       file_name = "leviticus.txt"
 
@@ -31,7 +23,7 @@ RSpec.describe Markov do
   end
 
   describe "#read_file" do
-    fit "reads a text file" do
+    it "reads a text file" do
       file_name = "leviticus.txt"
 
       text = Markov.read_file(file_name)
