@@ -1,6 +1,6 @@
 module Markov
   extend self
-  def parse(text)
-    "burnt-offering of the herd"
+  def parse(file_name)
+    File.read(file_name)
   end
 end
