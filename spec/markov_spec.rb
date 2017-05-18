@@ -20,7 +20,7 @@ RSpec.describe Markov do
       expect(text).to_not include("\n")
     end
 
-    it "replaces sentence-terminating punctuation with markers" do
+    fit "replaces sentence-terminating punctuation with markers" do
       sentence = "Who took all my cows? Asked Bob. I did!"
       desired_output = "Who took all my cows?@END Asked Bob.@END I did!@END"
 
