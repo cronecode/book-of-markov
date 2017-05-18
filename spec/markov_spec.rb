@@ -11,5 +11,13 @@ RSpec.describe Markov do
 
       expect(text).to include("burnt-offering of the herd")
     end
+
+    it "removes extra whitespace" do
+      file_name = "leviticus.txt"
+
+      text = Markov.parse(file_name)
+
+      expect(text).to_not include("\n")
+    end
   end
 end
