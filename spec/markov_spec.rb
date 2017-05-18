@@ -1,3 +1,5 @@
-Rspec.describe Markov do
+require 'markov'
+
+RSpec.describe Markov do
 
 end
