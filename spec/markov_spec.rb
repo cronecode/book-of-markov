@@ -46,4 +46,15 @@ RSpec.describe Markov do
       expect(result).to eq(desired_output)
     end
   end
+
+  describe "#tokenize" do
+    it "splits a sentence into words" do
+      input = "Who took all my cows?"
+      desired_output = ["Who", "took", "all", "my", "cows?"]
+
+      result = Markov.tokenize(input)
+
+      expect(result).to eq(desired_output)
+    end
+  end
 end
