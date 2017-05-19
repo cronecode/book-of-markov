@@ -18,6 +18,7 @@ RSpec.describe Markov do
 
   describe "#read_file" do
     it "reads a text file" do
+
       allow(File).to receive(:read).with("filename.txt").and_return("Who took all my cows? Asked Bob. I did!")
 
       text = Markov.read_file("filename.txt")
@@ -54,6 +55,17 @@ RSpec.describe Markov do
       desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
       result = Markov.separate_lines(input)
+
+      expect(result).to eq(desired_output)
+    end
+  end
+
+  describe "#tokenize" do
+    it "splits a line into words" do
+      input = "Who took all my cows?"
+      desired_output = ["Who", "took", "all", "my", "cows?"]
+
+      result = Markov.tokenize(input)
 
       expect(result).to eq(desired_output)
     end
