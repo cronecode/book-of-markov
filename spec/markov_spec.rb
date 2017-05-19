@@ -3,13 +3,17 @@ require "markov"
 #ARRANGE ACT ASSERT
 
 RSpec.describe Markov do
+  let(:sentence) { "Who took all my cows? Asked Bob. I did!" }
+  before do
+
+    allow(File).to receive(:read).with("filename.txt").and_return(sentence)
+  end
+
   describe "#parse" do
 
     it "works" do
-      sentence = "Who took all my cows? Asked Bob. I did!"
-      desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
-      allow(File).to receive(:read).with("filename.txt").and_return(sentence)
+      desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
       result = Markov.parse("filename.txt")
 
@@ -19,11 +23,10 @@ RSpec.describe Markov do
 
   describe "#read_file" do
     it "reads a text file" do
-      file_name = "leviticus.txt"
 
-      text = Markov.read_file(file_name)
+      text = Markov.read_file("filename.txt")
 
-      expect(text).to include("burnt-offering of the herd")
+      expect(text).to eq(sentence)
     end
   end
 
