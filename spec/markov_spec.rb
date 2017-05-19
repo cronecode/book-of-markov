@@ -35,4 +35,15 @@ RSpec.describe Markov do
       expect(result).to eq(desired_output)
     end
   end
+
+  describe "#insert_end_markers" do
+    it "inserts @END after sentence-terminating punctuation" do
+      input = "Who took all my cows? Asked Bob. I did!"
+      desired_output = "Who took all my cows?@ENDAsked Bob.@ENDI did!@END"
+
+      result = Markov.insert_end_markers(input)
+
+      expect(result).to eq(desired_output)
+    end
+  end
 end

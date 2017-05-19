@@ -4,15 +4,20 @@ module Markov
   def parse(text)
 
     text = replace_newlines(text)
+    text = insert_end_markers(text)
+
+    text.split('@END')
+  end
+
+  def insert_end_markers(text)
     text = text.gsub(/\.\s?/, '.@END')
     text = text.gsub(/\?\s?/, '?@END')
     text = text.gsub(/!\s?/, '!@END')
-
-    lines = text.split('@END')
   end
 
+
   def replace_newlines(text)
-    text = text.gsub(/\n+/, ' ')
+    text.gsub(/\n+/, ' ')
   end
 
   def read_file(file_name)
