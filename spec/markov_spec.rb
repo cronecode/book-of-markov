@@ -28,7 +28,7 @@ RSpec.describe Markov do
   end
 
   describe "#replace_newlines" do
-    it "replaces newlines with a single space" do
+    it "replaces newlines with single spaces" do
       input = "Boo\nhoo"
       desired_output = "Boo hoo"
 
