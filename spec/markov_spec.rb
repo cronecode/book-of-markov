@@ -5,7 +5,7 @@ require "markov"
 RSpec.describe Markov do
   describe "#parse" do
 
-    it "splits text into sentences" do
+    it "works" do
       sentence = "Who took all my cows? Asked Bob. I did!"
       desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
@@ -28,7 +28,7 @@ RSpec.describe Markov do
   end
 
   describe "#replace_newlines" do
-    it "replaces newline with a single space" do
+    it "replaces newlines with a single space" do
       input = "Boo\nhoo"
       desired_output = "Boo hoo"
 
@@ -50,7 +50,7 @@ RSpec.describe Markov do
   end
 
   describe "#separate_lines" do
-    it "splits the text into sentences" do
+    it "splits the text on @END markers" do
       input = "Who took all my cows?@ENDAsked Bob.@ENDI did!@END"
       desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
