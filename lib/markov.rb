@@ -1,12 +1,32 @@
 module Markov
   extend self
 
-  def parse(text)
+  def parse(file_name)
+    text = read_file(file_name)
+    text = replace_newlines(text)
+    text = insert_end_markers(text)
+    lines = separate_lines(text)
 
-    text = text.gsub(/\n+/, ' ')
-    text = text.gsub(/\./, '.@END')
-    text = text.gsub(/\?/, '?@END')
-    text = text.gsub(/!/, '!@END')
+    lines.map(&method(:tokenize))
+  end
+
+  def tokenize(line)
+    line.split(' ')
+  end
+
+  def separate_lines(text)
+    text.split('@END')
+  end
+
+  def insert_end_markers(text)
+    text = text.gsub(/\.\s?/, '.@END')
+    text = text.gsub(/\?\s?/, '?@END')
+    text = text.gsub(/!\s?/, '!@END')
+  end
+
+
+  def replace_newlines(text)
+    text.gsub(/\n+/, ' ')
   end
 
   def read_file(file_name)
