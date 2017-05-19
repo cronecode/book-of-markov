@@ -4,14 +4,11 @@ require "markov"
 
 RSpec.describe Markov do
   let(:sentence) { "Who took all my cows? Asked Bob. I did!" }
-  before do
-
-    allow(File).to receive(:read).with("filename.txt").and_return(sentence)
-  end
 
   describe "#parse" do
 
     it "works" do
+      allow(File).to receive(:read).with("filename.txt").and_return(sentence)
 
       desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
@@ -23,6 +20,7 @@ RSpec.describe Markov do
 
   describe "#read_file" do
     it "reads a text file" do
+      allow(File).to receive(:read).with("filename.txt").and_return(sentence)
 
       text = Markov.read_file("filename.txt")
 
