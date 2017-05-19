@@ -7,7 +7,11 @@ module Markov
     text = insert_end_markers(text)
     lines = separate_lines(text)
 
-    lines
+    lines.map(&method(:tokenize))
+  end
+
+  def tokenize(line)
+    line.split(' ')
   end
 
   def separate_lines(text)

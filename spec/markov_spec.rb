@@ -8,7 +8,7 @@ RSpec.describe Markov do
     it "works" do
       allow(File).to receive(:read).with("filename.txt").and_return("Who took all my cows? Asked Bob. I did!")
 
-      desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
+      desired_output = [["Who", "took", "all", "my", "cows?"], ["Asked", "Bob."], ["I", "did!"]]
 
       result = Markov.parse("filename.txt")
 
