@@ -1,11 +1,16 @@
 module Markov
   extend self
 
-  def parse(text)
-
+  def parse(file_name)
+    text = read_file(file_name)
     text = replace_newlines(text)
     text = insert_end_markers(text)
+    lines = separate_lines(text)
 
+    lines
+  end
+
+  def separate_lines(text)
     text.split('@END')
   end
 

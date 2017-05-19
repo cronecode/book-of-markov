@@ -9,7 +9,9 @@ RSpec.describe Markov do
       sentence = "Who took all my cows? Asked Bob. I did!"
       desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
-      result = Markov.parse(sentence)
+      allow(File).to receive(:read).with("filename.txt").and_return(sentence)
+
+      result = Markov.parse("filename.txt")
 
       expect(result).to eq(desired_output)
     end
@@ -47,12 +49,12 @@ RSpec.describe Markov do
     end
   end
 
-  describe "#tokenize" do
-    it "splits a sentence into words" do
-      input = "Who took all my cows?"
-      desired_output = ["Who", "took", "all", "my", "cows?"]
+  describe "#separate_lines" do
+    it "splits the text into sentences" do
+      input = "Who took all my cows?@ENDAsked Bob.@ENDI did!@END"
+      desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
-      result = Markov.tokenize(input)
+      result = Markov.separate_lines(input)
 
       expect(result).to eq(desired_output)
     end
