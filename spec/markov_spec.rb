@@ -4,14 +4,6 @@ require "markov"
 
 RSpec.describe Markov do
   describe "#parse" do
-    it "removes extra whitespace" do
-      sentence = "Boo\nHoo"
-      desired_output = ["Boo Hoo"]
-
-      output = Markov.parse(sentence)
-
-      expect(output).to eq(desired_output)
-    end
 
     it "splits text into sentences" do
       sentence = "Who took all my cows? Asked Bob. I did!"
@@ -30,6 +22,17 @@ RSpec.describe Markov do
       text = Markov.read_file(file_name)
 
       expect(text).to include("burnt-offering of the herd")
+    end
+  end
+
+  describe "#replace_newlines" do
+    it "replaces newline with a single space" do
+      input = "Boo\nhoo"
+      desired_output = "Boo hoo"
+
+      result = Markov.replace_newlines(input)
+
+      expect(result).to eq(desired_output)
     end
   end
 end
