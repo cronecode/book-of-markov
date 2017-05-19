@@ -6,16 +6,16 @@ RSpec.describe Markov do
   describe "#parse" do
     it "removes extra whitespace" do
       sentence = "Boo\nHoo"
-      desired_output = "Boo Hoo"
+      desired_output = ["Boo Hoo"]
 
       output = Markov.parse(sentence)
 
       expect(output).to eq(desired_output)
     end
 
-    it "replaces sentence-terminating punctuation with markers" do
+    it "splits text into sentences" do
       sentence = "Who took all my cows? Asked Bob. I did!"
-      desired_output = "Who took all my cows?@END Asked Bob.@END I did!@END"
+      desired_output = ["Who took all my cows?", "Asked Bob.", "I did!"]
 
       result = Markov.parse(sentence)
 

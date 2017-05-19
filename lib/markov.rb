@@ -4,9 +4,11 @@ module Markov
   def parse(text)
 
     text = text.gsub(/\n+/, ' ')
-    text = text.gsub(/\./, '.@END')
-    text = text.gsub(/\?/, '?@END')
-    text = text.gsub(/!/, '!@END')
+    text = text.gsub(/\.\s?/, '.@END')
+    text = text.gsub(/\?\s?/, '?@END')
+    text = text.gsub(/!\s?/, '!@END')
+
+    lines = text.split('@END')
   end
 
   def read_file(file_name)
